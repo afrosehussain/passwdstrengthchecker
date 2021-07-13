@@ -55,7 +55,10 @@
 		var passwd = document.getElementById("pass").value;
 		const doesItHaveNumber = /\d/.test(passwd);
 		const doesItHaveUpper = /[A-Z]/.test(passwd);
-		if(doesItHaveUpper==true && doesItHaveNumber==true && (passwd.includes('#') || passwd.includes('@') || passwd.includes('&'))){
+		if(passwd=="" || passwd==null){
+			document.getElementById("output").innerHTML = "";
+			document.getElementById("sub").disabled = true;
+		}else if(passwd.length>=6 && doesItHaveUpper==true && doesItHaveNumber==true && (passwd.includes('#') || passwd.includes('@') || passwd.includes('&'))){
 		document.getElementById("output").innerHTML = "Strong Password".fontcolor("green").bold();
 			document.getElementById("sub").disabled = false;
 		} else{
