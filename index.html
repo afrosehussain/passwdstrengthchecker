@@ -2,6 +2,7 @@
 <html>
 <head>
 	<meta charset="utf-8">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<title>Password Checker</title>
 	<style type="text/css">
 		body{
@@ -11,15 +12,22 @@
 			font-family: sans-serif;
 		}
 		#tab{
-			margin-top: 220px;
+			margin-top: 200px;
 			padding: 30px;
 			width: 30%;
-			height: 150px;
+			height: 200px;
 			background: rgb(224, 255, 255, 0.5);
 			border-radius: 10px;
 		}
 		h2{
 			margin-top: 0;
+		}
+		.vals{
+			font-size: 0.8em;
+		}
+		.fa{
+			display: none;
+			color: green;
 		}
 	</style>
 </head>
@@ -35,6 +43,21 @@
 		<tr>
 			<td>Password: </td>
 			<td><input type="password" name="user" id="pass"></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td>
+				<table class="vals">
+				<tr>
+					<td>Uppercase: <i id="up" class="fa fa-check" aria-hidden="true"></i></td>
+					<td>Number: <i id="nu" class="fa fa-check" aria-hidden="true"></i></td>
+				</tr>
+				<tr>
+					<td>Symbol: <i id="sy" class="fa fa-check" aria-hidden="true"></i></td>
+					<td>length>=6: <i id="len" class="fa fa-check" aria-hidden="true"></i></td>
+				</tr>
+			</td>
+		</table>
 		</tr>
 		<tr>
 			<td></td>
@@ -55,6 +78,26 @@
 		var passwd = document.getElementById("pass").value;
 		const doesItHaveNumber = /\d/.test(passwd);
 		const doesItHaveUpper = /[A-Z]/.test(passwd);
+		if(doesItHaveUpper==true){
+			document.getElementById("up").style.display = 'inline-block';
+		} else{
+			document.getElementById("up").style.display = 'none';
+		}
+		if(doesItHaveNumber==true){
+			document.getElementById("nu").style.display = 'inline-block';
+		}else{
+			document.getElementById("nu").style.display = 'none';
+		}
+		if(passwd.length>=6){
+			document.getElementById("len").style.display = 'inline-block';
+		}else{
+			document.getElementById("len").style.display = 'none';
+		}
+		if(passwd.includes('#') || passwd.includes('@') || passwd.includes('&')){
+			document.getElementById("sy").style.display = 'inline-block';
+		}else{
+			document.getElementById("sy").style.display = 'none';
+		}
 		if(passwd=="" || passwd==null){
 			document.getElementById("output").innerHTML = "";
 			document.getElementById("sub").disabled = true;
